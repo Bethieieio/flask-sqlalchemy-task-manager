@@ -6,4 +6,4 @@ from taskmanager import app
 # something
 def home():
     print("hello")
-    return render_template("base.html")
+    return render_template("tasks.html")
