@@ -9,10 +9,8 @@ class Category(db.Model):
     tasks = relationship("Task", backref="category", cascade="all, delete", lazy=True)
 
     def __repr__(self):
-        #__repr__ to represenr itself in a form of a string
-        return f"#{0} - Task: {1} | Urgent: {2}".format(
-            self.id, self.task_name, self.is_urgent
-        )
+        # __repr__ to represent itself in the form of a string
+        return self.category_name
 
 
 class Task(db.Model):
@@ -23,3 +21,8 @@ class Task(db.Model):
     is_urgent = Column(Boolean, default=False, nullable=False)
     due_date = Column(Date, nullable=False)
     category_id = Column(Integer, ForeignKey("category.id", ondelete="Cascade"), nullable=False)
+    def __repr__(self):
+        # __repr__ to represent itself in the form of a string
+        return "#{0} - Task: {1} | Urgent: {2}".format(
+            self.id, self.task_name, self.is_urgent
+        )
